@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎉 Selamat Ulang Tahun Wira Sukma Saputra! 🎂</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+
+    <div class="content">
+      <div id="initialContent">
+        <h1>🎉 Selamat Ulang Tahun! 🎂</h1>
+        <div class="name">Wira Sukma Saputra</div>
+        <div class="message">Semoga panjang umur, sehat selalu,<br />dan semua impianmu tercapai! 🎈</div>
+        <div class="buttons">
+          <button class="btn btn-yes" onclick="showForm()">Ucapkan! 🎊</button>
+          <button class="btn btn-no" id="btnNo" onmouseover="moveButton()" onclick="moveButton()">Enggak ah</button>
+        </div>
+      </div>
+
+      <!-- Form Ucapan -->
+      <div id="formContent" class="hidden">
+        <h2>✨ Tuliskan Ucapan & Doa Terbaikmu ✨</h2>
+        <form id="wishForm" onsubmit="submitWish(event)">
+          <div class="form-group">
+            <label for="senderName">Nama Kamu:</label>
+            <input type="text" id="senderName" name="senderName" required placeholder="Masukkan nama kamu..." />
+          </div>
+          <div class="form-group">
+            <label for="wishMessage">Ucapan & Doa:</label>
+            <textarea id="wishMessage" name="wishMessage" required placeholder="Tuliskan ucapan dan doa terbaik untuk Wira..." rows="5"></textarea>
+          </div>
+          <button type="submit" class="btn btn-submit">Kirim Ucapan 💌</button>
+        </form>
+      </div>
+
+      <!-- Celebration Content -->
+      <div id="celebrationContent" class="hidden">
+        <div class="celebration">🎉🎂🎈🎁🎊</div>
+        <h1>Terima Kasih! 🥳</h1>
+        <div class="final-message">
+          Ucapanmu sudah terkirim!<br />
+          <span id="senderNameDisplay"></span> ✨
+        </div>
+        <p class="gift-intro">🎁 Pilih salah satu dari 30 hadiah di bawah ini!<br>Hanya 1 yang beruntung! 🍀</p>
+        <div class="gift-boxes" id="giftBoxes"></div>
+      </div>
+
+      <!-- Prize Content -->
+      <div id="prizeContent" class="hidden">
+        <div class="celebration">🎊✨🌟</div>
+        <h1 id="prizeTitle">Selamat! 🎉</h1>
+        <div class="prize-message" id="prizeMessage"></div>
+        <a href="https://wa.me/6281234567890?text=Halo%20Wira,%20saya%20dapat%20hadiah%20dari%20web%20ulang%20tahunmu!" 
+           class="btn btn-whatsapp" 
+           target="_blank">
+          💬 Hubungi Wira via WhatsApp
+        </a>
+        <p class="wa-note">*Ganti nomor WA di code dengan nomor Wira yang benar</p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
