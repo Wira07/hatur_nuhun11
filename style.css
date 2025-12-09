@@ -459,75 +459,246 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  .content {
+    padding: 20px;
+  }
+
   h1 {
-    font-size: 3em;
+    font-size: 2.8em;
   }
 
   .name {
-    font-size: 2.5em;
+    font-size: 2.2em;
   }
 
   .message {
-    font-size: 1.5em;
-  }
-
-  .btn {
-    padding: 20px 40px;
     font-size: 1.3em;
   }
 
+  .btn {
+    padding: 16px 35px;
+    font-size: 1.2em;
+  }
+
+  .buttons {
+    height: 70px;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
   .celebration {
-    font-size: 5em;
+    font-size: 4.5em;
   }
 
   .final-message {
-    font-size: 1.8em;
+    font-size: 1.6em;
+  }
+
+  .gift-intro {
+    font-size: 1.3em;
   }
 
   .gift-boxes {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 10px;
     max-height: 350px;
+    padding: 0 10px;
   }
 
   .gift-box {
-    font-size: 2.5em;
+    font-size: 2.8em;
+  }
+
+  .form-group label {
+    font-size: 1.2em;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 1em;
+    padding: 12px 15px;
+  }
+
+  #formContent h2 {
+    font-size: 2em;
+  }
+
+  .prize-message {
+    font-size: 1.6em;
+  }
+
+  .btn-whatsapp {
+    font-size: 1.3em;
+    padding: 18px 35px;
   }
 }
 
 @media (max-width: 480px) {
+  .content {
+    padding: 15px;
+  }
+
   h1 {
-    font-size: 2.5em;
+    font-size: 2em;
+    margin-bottom: 15px;
   }
 
   .name {
-    font-size: 2em;
+    font-size: 1.6em;
   }
 
   .message {
-    font-size: 1.2em;
+    font-size: 1em;
+    margin: 20px 0;
   }
 
   .btn {
-    padding: 15px 30px;
-    font-size: 1.1em;
+    padding: 14px 28px;
+    font-size: 1em;
+  }
+
+  .buttons {
+    height: 65px;
+    gap: 10px;
+    margin-top: 40px;
   }
 
   .celebration {
-    font-size: 4em;
+    font-size: 3.5em;
+    margin: 30px 0;
   }
 
   .final-message {
-    font-size: 1.5em;
+    font-size: 1.3em;
+  }
+
+  .gift-intro {
+    font-size: 1.1em;
+    margin: 20px 10px;
   }
 
   .gift-boxes {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 8px;
-    max-height: 300px;
+    max-height: 280px;
+    padding: 0 5px;
   }
 
   .gift-box {
     font-size: 2em;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 1.1em;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.95em;
+    padding: 12px 15px;
+  }
+
+  #formContent h2 {
+    font-size: 1.6em;
+    margin-bottom: 25px;
+  }
+
+  .btn-submit {
+    font-size: 1.1em;
+    padding: 15px 40px;
+  }
+
+  .prize-message {
+    font-size: 1.3em;
+    margin: 20px 10px;
+  }
+
+  .btn-whatsapp {
+    font-size: 1.1em;
+    padding: 16px 30px;
+  }
+
+  .wa-note {
+    font-size: 0.8em;
+    padding: 0 10px;
+  }
+}
+
+/* Extra small devices (iPhone SE, etc) */
+@media (max-width: 375px) {
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .name {
+    font-size: 1.4em;
+  }
+
+  .message {
+    font-size: 0.95em;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 0.95em;
+  }
+
+  .gift-boxes {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .gift-box {
+    font-size: 1.8em;
+  }
+
+  #formContent h2 {
+    font-size: 1.4em;
+  }
+}
+
+/* Landscape mode for mobile */
+@media (max-width: 812px) and (orientation: landscape) {
+  .content {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+  }
+
+  .name {
+    font-size: 1.8em;
+    margin: 10px 0;
+  }
+
+  .message {
+    font-size: 1.1em;
+    margin: 15px 0;
+  }
+
+  .buttons {
+    margin-top: 20px;
+    height: 60px;
+  }
+
+  .celebration {
+    font-size: 3em;
+    margin: 20px 0;
+  }
+
+  .gift-boxes {
+    max-height: 200px;
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  .gift-box {
+    font-size: 2.2em;
   }
 }

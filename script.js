@@ -44,13 +44,26 @@ function showForm() {
 function submitWish(event) {
     event.preventDefault();
     
-    const senderName = document.getElementById('senderName').value;
-    const wishMessage = document.getElementById('wishMessage').value;
+    const senderName = document.getElementById('senderName').value.trim();
+    const wishMessage = document.getElementById('wishMessage').value.trim();
+    
+    // Cek apakah nama sudah pernah submit
+    const submittedNames = JSON.parse(localStorage.getItem('submittedNames') || '[]');
+    const nameLower = senderName.toLowerCase();
+    
+    if (submittedNames.includes(nameLower)) {
+        alert('⚠️ Nama ini sudah pernah mengirim ucapan! Satu orang hanya bisa mengucapkan satu kali ya! 😊');
+        return;
+    }
+    
+    // Simpan nama yang sudah submit
+    submittedNames.push(nameLower);
+    localStorage.setItem('submittedNames', JSON.stringify(submittedNames));
     
     // Simpan nama pengirim untuk ditampilkan
     document.getElementById('senderNameDisplay').textContent = `Terima kasih, ${senderName}!`;
     
-    // Kirim email menggunakan EmailJS atau mailto
+    // Kirim email notifikasi
     sendEmail(senderName, wishMessage);
     
     // Tampilkan celebration content
@@ -76,46 +89,51 @@ function submitWish(event) {
     }, 500);
 }
 
-// Fungsi kirim email (menggunakan mailto sebagai fallback)
+// Fungsi kirim email notifikasi
 function sendEmail(senderName, wishMessage) {
-    const subject = `🎉 Ucapan Ulang Tahun dari ${senderName}`;
-    const body = `
-Nama Pengirim: ${senderName}
-
-Ucapan & Doa:
-${wishMessage}
-
----
-Dikirim dari Web Ucapan Ulang Tahun
-Tanggal: ${new Date().toLocaleString('id-ID')}
-    `;
-    
-    // Method 1: Menggunakan mailto (akan membuka email client)
-    const mailtoLink = `mailto:${CONFIG.emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Buka di tab baru (tidak mengganggu experience)
-    // window.open(mailtoLink, '_blank');
-    
-    // Method 2: Jika ingin menggunakan service email API seperti EmailJS
-    // Uncomment code di bawah dan setup EmailJS
-    /*
-    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-        from_name: senderName,
-        message: wishMessage,
-        to_email: CONFIG.emailTo
+    const timestamp = new Date().toLocaleString('id-ID', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
     });
-    */
+    
+    // Kirim notifikasi ke FormSubmit.co (gratis, tanpa setup)
+    const formData = new FormData();
+    formData.append('_subject', `🎉 ${senderName} Baru Saja Mengucapkan Selamat!`);
+    formData.append('Nama', senderName);
+    formData.append('Ucapan', wishMessage);
+    formData.append('Waktu', timestamp);
+    formData.append('_template', 'box');
+    formData.append('_captcha', 'false');
+    
+    // Kirim ke FormSubmit (ganti YOUR_EMAIL dengan email Wira)
+    fetch(`https://formsubmit.co/ajax/${CONFIG.emailTo}`, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('✅ Notifikasi email terkirim:', data);
+    })
+    .catch(error => {
+        console.log('⚠️ Gagal kirim email, tersimpan di localStorage:', error);
+    });
     
     // Simpan ke localStorage sebagai backup
     const wishes = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
     wishes.push({
         name: senderName,
         message: wishMessage,
-        date: new Date().toISOString()
+        date: new Date().toISOString(),
+        timestamp: timestamp
     });
     localStorage.setItem('birthdayWishes', JSON.stringify(wishes));
     
-    console.log('Ucapan tersimpan:', { senderName, wishMessage });
+    console.log('📝 Ucapan tersimpan:', { senderName, wishMessage, timestamp });
 }
 
 // Generate 30 kotak hadiah
